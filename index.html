@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.content>p{
+			display:none;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="title">
+			<p>第一个</p>
+			<p>第二个</p>
+			<p>第三个</p>
+		</div>
+		<div class="content">
+			<p>第一个内容</p>
+			<p>第二个内容</p>
+			<p>第三个内容</p>
+		</div>
+	</div>
+	<script src="jquery.js"></script>
+	<script>
+		var tab={
+			init:function () {
+				this._initDom()
+				this._initEvent()
+			},
+			_initDom:function(){
+				this.tit=$(".title").find("p")
+				this.content=$(".content").find("p")
+			},
+			_initEvent:function(){
+				var self=this
+				this.tit.on("click",function(){
+					self._show.call(self,this)
+				})
+			},
+			_show:function(node){
+				var idx=$(node).index()
+				this.content.eq(idx).show().siblings().hide()
+			}
+		}
+		tab.init()
+	</script>
+</body>
+</html>
